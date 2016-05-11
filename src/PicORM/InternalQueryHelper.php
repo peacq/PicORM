@@ -114,6 +114,7 @@ class InternalQueryHelper extends QueryBuilder
         foreach ($where as $fieldName => $oneCritera) {
             $val      = '?';
             $operator = "=";
+            $booleanOperator = "AND";
             if (is_array($oneCritera)) {
                 // using raw mysql
                 if (count($oneCritera) == 1 && isset($oneCritera[0])) {
@@ -131,11 +132,14 @@ class InternalQueryHelper extends QueryBuilder
                             $this->_whereValues[] = $oneCritera['value'];
                         }
                     }
+                    if (isset($oneCritera['booleanOperator'])){
+                        $booleanOperator = $oneCritera['booleanOperator'];
+                    }
                 }
             } else {
                 $this->_whereValues[] = $oneCritera;
             }
-            $this->where($fieldName, $operator, $val);
+            $this->where($fieldName, $operator, $val, $booleanOperator);
         }
 
         return $this->_whereValues;
