@@ -1,5 +1,5 @@
 {
-    "name": "picorm/picorm",
+    "name": "peacq/picorm",
     "type": "library",
     "description": "Lightweight ORM",
     "keywords": ["orm"],
